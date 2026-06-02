@@ -75,7 +75,6 @@ const Sidebar = () => {
           />
           <div>
             <p className="font-medium text-sm text-slate-900">Saugata Das</p>
-
             <p className="text-xs text-slate-500">Frontend Developer</p>
           </div>
         </div>
