@@ -1,16 +1,18 @@
 import { X, Flag } from "lucide-react";
 import type React from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { FormErrors, Task } from "../types/types";
 
 interface CreateTaskModalProps {
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+  editingTask: Task | null;
 }
 
 const CreateTaskModal = ({
   setIsModalOpen,
   setTasks,
+  editingTask
 }: CreateTaskModalProps) => {
   const [taskItem, setTaskItem] = useState<Task>({
     id: "",
@@ -52,11 +54,18 @@ const CreateTaskModal = ({
       setErrors(newError);
       return;
     }
-    const newTask = {
-      ...taskItem,
-      id: crypto.randomUUID(),
-    };
-    setTasks((prev) => [...prev, newTask]);
+    if (editingTask) {
+      setTasks((prev) =>
+        prev.map((item) => (item.id === editingTask.id ? taskItem : item)),
+      );
+    } else {
+      const newTask = {
+        ...taskItem,
+        id: crypto.randomUUID(),
+      };
+      setTasks((prev) => [...prev, newTask]);
+    }
+
     setIsModalOpen(false);
     setTaskItem({
       id: "",
@@ -68,6 +77,12 @@ const CreateTaskModal = ({
     });
   };
 
+  useEffect(() => {
+    if (editingTask) {
+      setTaskItem(editingTask);
+    }
+  }, [editingTask]);
+
   return (
     <div className="fixed inset-0 flex justify-center items-center bg-black/30 backdrop-blur-sm">
       <form
@@ -76,7 +91,7 @@ const CreateTaskModal = ({
       >
         <div className="flex justify-between items-center">
           <h2 className="text-slate-900 text-xl font-semibold">
-            Create New Task
+            {editingTask ? "Edit Task" : "Create New Task"}
           </h2>
           <X
             size={20}
