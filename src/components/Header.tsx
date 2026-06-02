@@ -9,7 +9,7 @@ const Header = ({ theme }: HeaderProps) => {
   return (
     <header
       className="flex flex-col md:flex-row md:justify-between md:items-center border-b
-     border-slate-200 p-8"
+     border-slate-200 px-8 py-5"
     >
       <div>
         <h1 className="text-3xl font-medium pb-2 text-slate-900 dark:text-white">
