@@ -3,9 +3,10 @@ import type { Theme } from "../types/types";
 
 interface HeaderProps {
   theme: Theme;
+  setIsModalOpen: (value: boolean) => void;
 }
 
-const Header = ({ theme }: HeaderProps) => {
+const Header = ({ theme, setIsModalOpen }: HeaderProps) => {
   return (
     <header
       className="flex flex-col md:flex-row md:justify-between md:items-center border-b
@@ -47,6 +48,7 @@ const Header = ({ theme }: HeaderProps) => {
           className="px-5 py-3.5 bg-blue-600 text-white flex items-center gap-1.5 
         cursor-pointer rounded-lg text-sm font-medium shadow-sm transition-all
         duration-200 hover:bg-blue-700"
+          onClick={() => setIsModalOpen(true)}
         >
           <Plus size={18} />
           Create New Task
