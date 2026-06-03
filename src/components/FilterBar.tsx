@@ -22,9 +22,11 @@ const FilterBar = ({
   };
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex max-sm:flex-wrap items-center max-sm:w-full gap-3">
       <select
-        className="rounded-md border border-slate-300 outline-none bg-white px-4 py-3 text-sm focus:border-blue-500"
+        className="rounded-lg border border-slate-300 outline-none bg-white px-2 md:px-4 py-3 
+        text-sm focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800 
+        dark:text-white/80 dark:shadow-sm dark:shadow-white/5"
         value={priorityFilter}
         onChange={handlePriorityChange}
       >
@@ -35,7 +37,9 @@ const FilterBar = ({
       </select>
 
       <select
-        className="rounded-md border border-slate-300 outline-none bg-white px-4 py-3 text-sm focus:border-blue-500"
+        className="rounded-lg border border-slate-300 outline-none bg-white px-2 md:px-4 py-3 
+        text-sm focus:border-blue-500 dark:border-slate-700 dark:bg-slate-800 
+        dark:text-white/80 dark:shadow-sm dark:shadow-white/5"
         value={sortBy}
         onChange={handleSortChange}
       >

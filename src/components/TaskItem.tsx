@@ -41,8 +41,8 @@ const TaskItem = ({
 
   return (
     <div
-      className="bg-white rounded-lg border border-slate-200 p-5 shadow-sm 
-    hover:shadow-md transition-all duration-200 mt-3"
+      className="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm 
+    hover:shadow-md transition-all duration-200 mt-3 dark:bg-slate-800/30 dark:border-slate-700"
     >
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
         <div className="flex gap-7 flex-1 items-center">
@@ -51,13 +51,15 @@ const TaskItem = ({
             name="isCompleted"
             checked={isCompleted}
             onChange={() => onToggleComplete(id)}
-            className="h-4 w-4 cursor-pointer border-slate-300"
+            className="h-4 w-4 cursor-pointer border-slate-300 dark:border-slate-600
+             text-blue-600 focus:ring-blue-500  dark:bg-slate-700 
+             dark:checked:bg-blue-600 dark:checked:border-blue-600"
           />
 
           <div className="flex-1">
             <h3
-              className={`text-base font-semibold text-slate-900 ${
-                isCompleted ? "line-through text-slate-400" : ""
+              className={`text-base font-semibold text-slate-900 dark:text-white ${
+                isCompleted ? "line-through text-slate-400 dark:text-slate-500" : ""
               }`}
             >
               {title}
@@ -65,7 +67,7 @@ const TaskItem = ({
 
             {description && (
               <p
-                className={`mt-1 text-sm text-slate-500
+                className={`mt-1 text-sm text-slate-500 dark:text-slate-300
                   ${isCompleted ? "line-through" : ""}`}
               >
                 {description}
@@ -74,8 +76,8 @@ const TaskItem = ({
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-11">
-          <div className="flex items-center gap-7">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-11">
+          <div className="flex flex-wrap items-center gap-3">
             <span
               className={`px-2.5 py-1.5 rounded-full text-xs font-bold capitalize
                     flex items-center gap-1.5 ${priorityStyles[priority]}`}
@@ -83,7 +85,8 @@ const TaskItem = ({
               <Flag size={14} />
               {priority}
             </span>
-            <div className="flex items-center gap-1 text-sm text-slate-500 whitespace-nowrap">
+            <div className="flex items-center gap-1 text-sm text-slate-500 
+            whitespace-nowrap dark:text-white/80">
               <CalendarDays size={15} />
               {dueDate}
             </div>
@@ -94,13 +97,13 @@ const TaskItem = ({
               size={16}
               onClick={() => onEdit(id)}
               className="text-slate-600 cursor-pointer hover:text-blue-600
-            transition-colors"
+            transition-colors dark:text-white/80 dark:hover:text-blue-500"
             />
             <Trash2
               size={18}
               onClick={() => onDelete(id)}
               className="text-red-600 cursor-pointer hover:text-red-700
-            transition-colors"
+            transition-colors dark:text-red-500 dark:hover:text-red-400"
             />
           </div>
         </div>

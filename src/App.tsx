@@ -22,6 +22,7 @@ const App = () => {
     return savedTasks ? (JSON.parse(savedTasks) as Task[]) : [];
   });
   const [editingTask, setEditingTask] = useState<Task | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   const filteredTasks = tasks
     .filter((task) => {
@@ -60,7 +61,9 @@ const App = () => {
 
   const inProgressTasks = tasks.filter((task) => !task.isCompleted).length;
 
-  const highPriorityTasks = tasks.filter((task) => task.priority === "high").length;
+  const highPriorityTasks = tasks.filter(
+    (task) => task.priority === "high",
+  ).length;
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -68,15 +71,25 @@ const App = () => {
   }, [tasks, theme]);
 
   return (
-    <div className={theme === "dark" ? "dark" : ""}>
-      <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+    <div className={`${theme === "dark" ? "dark" : ""} w-full`}>
+      <div className="min-h-screen bg-slate-50 dark:bg-slate-900 w-full">
         <div className="flex">
-          <Sidebar />
+          <Sidebar
+            isOpen={isSidebarOpen}
+            setIsOpen={setIsSidebarOpen}
+            theme={theme}
+          />
 
           <main className="flex-1">
-            <Header theme={theme} setIsModalOpen={setIsModalOpen} setTheme={setTheme} />
+            <Header
+              theme={theme}
+              setIsModalOpen={setIsModalOpen}
+              setTheme={setTheme}
+              setIsSidebarOpen={setIsSidebarOpen}
+            />
 
-            <div className="px-8 py-5 flex items-center justify-between gap-3">
+            <div className="px-4 md:px-8 py-5 flex flex-col sm:flex-row items-center 
+             justify-between gap-3">
               <SearchBar
                 searchTerm={searchTerm}
                 setSearchTerm={setSearchTerm}
@@ -89,7 +102,7 @@ const App = () => {
               />
             </div>
 
-            <div className="px-8">
+            <div className="px-4 md:px-8 pb-12">
               <TaskStats
                 totalTasks={totalTasks}
                 completedTasks={completedTasks}

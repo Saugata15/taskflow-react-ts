@@ -84,9 +84,9 @@ const CreateTaskModal = ({
   }, [editingTask]);
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-black/30 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex justify-center items-center bg-black/30 backdrop-blur-sm">
       <form
-        className="p-8 max-w-lg bg-white w-full shadow-lg rounded-lg flex flex-col gap-5"
+        className="px-4 py-8 sm:p-8 max-w-lg bg-white w-full shadow-lg rounded-lg flex flex-col gap-5"
         onSubmit={handleSubmit}
       >
         <div className="flex justify-between items-center">
@@ -140,7 +140,7 @@ const CreateTaskModal = ({
           />
         </div>
 
-        <div className="flex justify-between items-start gap-5">
+        <div className="flex flex-col sm:flex-row justify-between items-start gap-5">
           <div className="flex flex-col flex-1">
             <label
               htmlFor="priority"
@@ -190,7 +190,7 @@ const CreateTaskModal = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"
             onClick={() => setIsModalOpen(false)}
