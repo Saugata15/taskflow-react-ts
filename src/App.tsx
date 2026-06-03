@@ -6,6 +6,7 @@ import SearchBar from "./components/SearchBar";
 import CreateTaskModal from "./components/CreateTaskModal";
 import TaskList from "./components/TaskList";
 import FilterBar from "./components/FilterBar";
+import TaskStats from "./components/TaskStats";
 
 const App = () => {
   const [theme, setTheme] = useState<Theme>(() => {
@@ -22,32 +23,44 @@ const App = () => {
   });
   const [editingTask, setEditingTask] = useState<Task | null>(null);
 
-  const filteredTasks = tasks.filter((task) => {
-    const matchesSearch =
-      task.title.toLowerCase().includes(searchTerm.trim().toLowerCase()) ||
-      task.description.toLowerCase().includes(searchTerm.trim().toLowerCase());
+  const filteredTasks = tasks
+    .filter((task) => {
+      const matchesSearch =
+        task.title.toLowerCase().includes(searchTerm.trim().toLowerCase()) ||
+        task.description
+          .toLowerCase()
+          .includes(searchTerm.trim().toLowerCase());
 
-    const matchesPriority =
-      priorityFilter === "all" ? true : task.priority === priorityFilter;
+      const matchesPriority =
+        priorityFilter === "all" ? true : task.priority === priorityFilter;
 
-    return matchesSearch && matchesPriority;
-  }).sort((a,b)=>{
-    if(sortBy === "priority") {
-      const order = {
-        high: 3,
-        medium: 2,
-        low: 1,
-      };
-      return order[b.priority] - order[a.priority];
-    }
-    if(sortBy === "newest") {
-      return (new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime())
-    }
-    if(sortBy === "oldest") {
-      return (new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime())
-    }
-    return 0;
-  })
+      return matchesSearch && matchesPriority;
+    })
+    .sort((a, b) => {
+      if (sortBy === "priority") {
+        const order = {
+          high: 3,
+          medium: 2,
+          low: 1,
+        };
+        return order[b.priority] - order[a.priority];
+      }
+      if (sortBy === "newest") {
+        return new Date(b.dueDate).getTime() - new Date(a.dueDate).getTime();
+      }
+      if (sortBy === "oldest") {
+        return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+      }
+      return 0;
+    });
+
+  const totalTasks = tasks.length;
+
+  const completedTasks = tasks.filter((task) => task.isCompleted).length;
+
+  const inProgressTasks = tasks.filter((task) => !task.isCompleted).length;
+
+  const highPriorityTasks = tasks.filter((task) => task.priority === "high").length;
 
   useEffect(() => {
     localStorage.setItem("theme", theme);
@@ -61,7 +74,7 @@ const App = () => {
           <Sidebar />
 
           <main className="flex-1">
-            <Header theme={theme} setIsModalOpen={setIsModalOpen} />
+            <Header theme={theme} setIsModalOpen={setIsModalOpen} setTheme={setTheme} />
 
             <div className="px-8 py-5 flex items-center justify-between gap-3">
               <SearchBar
@@ -77,6 +90,13 @@ const App = () => {
             </div>
 
             <div className="px-8">
+              <TaskStats
+                totalTasks={totalTasks}
+                completedTasks={completedTasks}
+                inProgressTasks={inProgressTasks}
+                highPriorityTasks={highPriorityTasks}
+              />
+
               <TaskList
                 tasks={filteredTasks}
                 setTasks={setTasks}

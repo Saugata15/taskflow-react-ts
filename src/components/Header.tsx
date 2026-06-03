@@ -1,12 +1,14 @@
 import { Moon, Sun, Plus } from "lucide-react";
 import type { Theme } from "../types/types";
+import type React from "react";
 
 interface HeaderProps {
   theme: Theme;
   setIsModalOpen: (value: boolean) => void;
+  setTheme: React.Dispatch<React.SetStateAction<Theme>>
 }
 
-const Header = ({ theme, setIsModalOpen }: HeaderProps) => {
+const Header = ({ theme, setIsModalOpen, setTheme }: HeaderProps) => {
   return (
     <header
       className="flex flex-col md:flex-row md:justify-between md:items-center border-b
@@ -27,6 +29,7 @@ const Header = ({ theme, setIsModalOpen }: HeaderProps) => {
         bg-white shadow-sm dark:border-slate-700 dark:bg-slate-800 "
         >
           <button
+          onClick={()=>setTheme("light")}
             className={`cursor-pointer transition-all p-2 rounded-lg ${
               theme === "dark"
                 ? "bg-slate-100 text-slate-900"
@@ -36,6 +39,7 @@ const Header = ({ theme, setIsModalOpen }: HeaderProps) => {
             <Sun size={16} />
           </button>
           <button
+          onClick={()=>setTheme("dark")}
             className={`cursor-pointer transition-all p-2 rounded-lg ${
               theme === "dark" ? "bg-slate-700 text-white" : "text-slate-500"
             }`}
