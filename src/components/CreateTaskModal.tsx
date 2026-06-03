@@ -205,7 +205,7 @@ const CreateTaskModal = ({
             className="text-white bg-blue-600 text-sm font-medium px-6 py-3 
           rounded-md shadow-sm cursor-pointer hover:bg-blue-700 transition-all duration-200"
           >
-            Create Task
+            {editingTask ? "Update Task" : "Create Task"}
           </button>
         </div>
       </form>
