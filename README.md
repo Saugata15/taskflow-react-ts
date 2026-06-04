@@ -1,26 +1,23 @@
 # TaskFlow
 
-A modern task management application built using React, TypeScript, and Tailwind CSS.
+A modern task management dashboard built with React, TypeScript, and Tailwind CSS.
 
 ## Features
 
-- Create Tasks
-- Edit Tasks
-- Delete Tasks
-- Search Tasks
-- Filter Tasks
-- Task Priorities
-- Due Dates
-- LocalStorage Persistence
+- Create tasks
+- Edit tasks
+- Delete tasks
+- Search tasks
+- Filter by priority
+- Sort tasks
+- Dark mode
+- Local storage persistence
+- Responsive design
 
 ## Tech Stack
 
 - React
 - TypeScript
 - Tailwind CSS
-
-## Installation
-
-npm install
-
-npm run dev
+- Vite
+- Lucide React
