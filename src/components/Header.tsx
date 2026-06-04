@@ -70,7 +70,7 @@ const Header = ({
               onClick={() => setIsModalOpen(true)}
               className="w-full sm:w-auto px-5 py-3.5 bg-blue-600 text-white flex items-center
             justify-center gap-2 rounded-lg text-sm font-medium shadow-sm transition-all
-            duration-200 hover:bg-blue-700 max-md:px-3 max-md:py-2.5"
+            duration-200 hover:bg-blue-700 max-sm:px-3 max-sm:py-2.5"
             >
               <Plus size={18} />
               <span className="hidden sm:block xs:inline">Create New Task</span>

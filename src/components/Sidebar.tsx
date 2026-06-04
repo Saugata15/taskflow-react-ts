@@ -64,7 +64,7 @@ const Sidebar = ({ theme, isOpen, setIsOpen }: SidebarProps) => {
       >
         <div className=" flex items-center border-b border-slate-200 px-6 py-6 dark:border-slate-700">
           <img
-            src={theme === "dark" ? "./logo-transparent.png" : "./logo.png"}
+            src={theme === "dark" ? "/logo-transparent.png" : "/logo.png"}
             alt="logo"
             className="w-40"
           />
@@ -102,7 +102,7 @@ const Sidebar = ({ theme, isOpen, setIsOpen }: SidebarProps) => {
         <div className="border-t border-slate-200 p-4 dark:border-slate-700">
           <div className="flex items-center gap-3">
             <img
-              src="./Avatar.png"
+              src="/Avatar.png"
               alt="profile"
               className="h-10 w-10 rounded-full"
             />
