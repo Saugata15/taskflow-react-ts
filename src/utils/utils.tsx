@@ -1,0 +1,1 @@
+export const Tasks_Per_Page: number = 5;

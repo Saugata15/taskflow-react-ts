@@ -1,12 +1,14 @@
 import type React from "react";
 import type { Task } from "../types/types";
 import TaskItem from "./TaskItem";
+import {Tasks_Per_Page} from "../utils/utils";
 
 interface TaskListProps {
   tasks: Task[];
   setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
   setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
   setEditingTask: React.Dispatch<React.SetStateAction<Task | null>>;
+  startPageIndex: number;
 }
 
 const TaskList = ({
@@ -14,6 +16,7 @@ const TaskList = ({
   setTasks,
   setIsModalOpen,
   setEditingTask,
+  startPageIndex,
 }: TaskListProps) => {
   if (tasks.length === 0) {
     return (
@@ -24,9 +27,10 @@ const TaskList = ({
       </div>
     );
   }
+  const tasksToShow = tasks.slice((startPageIndex - 1) * Tasks_Per_Page, startPageIndex * Tasks_Per_Page);
   return (
     <div>
-      {tasks.map((item) => (
+      {tasksToShow.map((item) => (
         <TaskItem
           key={item.id}
           item={item}

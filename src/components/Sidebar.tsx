@@ -60,7 +60,7 @@ const Sidebar = ({ theme, isOpen, setIsOpen }: SidebarProps) => {
       <aside
         className={`fixed top-0 left-0 z-50 flex h-screen w-64 flex-col border-r border-slate-200
           bg-white transition-transform duration-300 dark:border-slate-700 dark:bg-slate-900
-          ${isOpen ? "translate-x-0" : "-translate-x-full"} lg:static lg:translate-x-0`}
+          ${isOpen ? "translate-x-0" : "-translate-x-full"} lg:fixed lg:translate-x-0`}
       >
         <div className=" flex items-center border-b border-slate-200 px-6 py-6 dark:border-slate-700">
           <img

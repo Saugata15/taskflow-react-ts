@@ -7,6 +7,7 @@ import CreateTaskModal from "./components/CreateTaskModal";
 import TaskList from "./components/TaskList";
 import FilterBar from "./components/FilterBar";
 import TaskStats from "./components/TaskStats";
+import Pagination from "./components/Pagination";
 
 const App = () => {
   const [theme, setTheme] = useState<Theme>(() => {
@@ -23,6 +24,7 @@ const App = () => {
   });
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
+  const [startPageIndex, setStartPageIndex] = useState<number>(1);
 
   const filteredTasks = tasks
     .filter((task) => {
@@ -80,7 +82,7 @@ const App = () => {
             theme={theme}
           />
 
-          <main className="flex-1">
+          <main className="flex-1 lg:ml-64">
             <Header
               theme={theme}
               setIsModalOpen={setIsModalOpen}
@@ -115,7 +117,9 @@ const App = () => {
                 setTasks={setTasks}
                 setIsModalOpen={setIsModalOpen}
                 setEditingTask={setEditingTask}
+                startPageIndex={startPageIndex}
               />
+              <Pagination tasks={filteredTasks} startPageIndex={startPageIndex} setStartPageIndex={setStartPageIndex}/>
             </div>
 
             {isModalOpen && (
