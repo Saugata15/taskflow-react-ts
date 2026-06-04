@@ -22,7 +22,7 @@ const Pagination = ({ tasks, startPageIndex, setStartPageIndex }: PaginationProp
         <ChevronsLeft size={16} />
       </button>
       <p className="text-sm dark:text-white/80">
-        {`page ${startPageIndex} of ${totalPages}`}
+        {`page ${startPageIndex} of ${totalPages || 1}`}
       </p>
       <button
         className="bg-blue-600 hover:bg-blue-700 text-white font-medium 

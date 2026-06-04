@@ -21,9 +21,11 @@ const TaskList = ({
   if (tasks.length === 0) {
     return (
       <div className="text-center py-16">
-        <h3 className="font-semibold">No tasks found</h3>
+        <h3 className="font-semibold text-slate-900 dark:text-white">No tasks found</h3>
 
-        <p className="text-slate-500">Create your first task</p>
+        <p className="text-slate-500 dark:text-slate-400">
+          Create your first task
+        </p>
       </div>
     );
   }
